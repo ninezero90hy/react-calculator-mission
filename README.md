@@ -34,7 +34,7 @@ Start Component Testing in Chrome을 선택한다 ( 브라우저 선택은 선�
 
 작성한 테스트를 선택해서 실행한다
 
-![image](https://user-images.githubusercontent.com/41019113/175461140-fa6e38f6-d4b0-46a8-ac67-9d0e44ce4dc3.png)
+![image](https://user-images.githubusercontent.com/41019113/175473040-87efd558-9c56-4333-9345-d64a46202bff.png)
 
 `예시`
 
