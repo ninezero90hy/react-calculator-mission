@@ -1,5 +1,7 @@
 # 리액트로 계산기 만들어보기 미션
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/56ab91af-0963-4e1f-ba56-cf0699a1bd1b/deploy-status)](https://app.netlify.com/sites/leafy-sable-757250/deploys)
+
 ![image](https://user-images.githubusercontent.com/41019113/175235647-83e19cb4-d736-45f7-acf6-c8a3e9775399.png)
 
 # 요구사항
