@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const Container = styled.h1`
+const RESULT = 'RESULT';
+
+const Container = styled.div`
   max-width: 400px;
   margin: 10vh auto 0 auto;
 `;
@@ -58,7 +60,7 @@ const EqualButton = styled(Button)`
 function App() {
   return (
     <Container>
-      <Display>54,000</Display>
+      <Display id={RESULT}>54,000</Display>
       <TopButtons>
         <SpecialButton>AC</SpecialButton>
         <SpecialButton>%</SpecialButton>
