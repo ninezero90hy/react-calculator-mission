@@ -16,6 +16,7 @@
 # 테스트 요구사항
 요구사항에 있는 것은 모두 테스트를 통과해야 한다
 
+
 # 테스트 실행 방법
 ![image](https://user-images.githubusercontent.com/41019113/175460808-97c253b6-f97a-4db0-9914-86ff31c4fbbb.png)
 
@@ -37,10 +38,6 @@ Start Component Testing in Chrome을 선택한다 ( 브라우저 선택은 선�
 
 `예시`
 
-# 참고
-- @cypress/react https://github.com/cypress-io/cypress/tree/master/npm/react#readme
-- cypress 가이드 https://docs.cypress.io/guides/overview/why-cypress
-
 # PR 요청
 해당 프로젝트를 포크 후 본인 저장소에서 수정한다
 
@@ -49,3 +46,8 @@ Start Component Testing in Chrome을 선택한다 ( 브라우저 선택은 선�
 2. 커밋도 `SRP`를 지키도록 노력한다
 3. `반드시` 테스트 코드를 작성한다. 단 E2E 테스트는 현재 버젼 문제로 인해 현재는 작동되지 않으므로 MOCK 테스트로 작성하도록 한다
 4. `Prettier` 설정이 되어 있으므로 활성화해서 코드를 작성하도록 한다
+
+# 참고
+- SRP란? - https://brownbears.tistory.com/562
+- @cypress/react https://github.com/cypress-io/cypress/tree/master/npm/react#readme
+- cypress 가이드 https://docs.cypress.io/guides/overview/why-cypress
