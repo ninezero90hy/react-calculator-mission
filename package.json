@@ -13,7 +13,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "cypress open",
-    "eject": "react-scripts eject"
+    "test:all": "cypress run --component",
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +44,7 @@
     "cypress": "^10.2.0",
     "cypress-react-selector": "^2.3.20",
     "eslint-plugin-cypress": "^2.12.1",
+    "husky": "^8.0.0",
     "prettier": "^2.7.1"
   }
 }
