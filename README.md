@@ -14,3 +14,24 @@
 
 # 테스트 요구사항
 요구사항에 있는 것은 모두 테스트를 통과해야 한다
+
+# 테스트 실행 방법
+![image](https://user-images.githubusercontent.com/41019113/175460808-97c253b6-f97a-4db0-9914-86ff31c4fbbb.png)
+
+패키지 제이슨의 test 스크립트를 실행한다
+
+![image](https://user-images.githubusercontent.com/41019113/175460919-e79418b7-4db3-4b16-bd6b-bb68c75d00f7.png)
+
+Component Testing을 선택한다
+
+![image](https://user-images.githubusercontent.com/41019113/175460997-1b01a9a6-1fa7-4abb-90c1-a8a177f2d8cf.png)
+
+Start Component Testing in Chrome을 선택한다 ( 브라우저 선택은 선택사항 )
+
+![image](https://user-images.githubusercontent.com/41019113/175461094-bfe50118-c8a1-4e2a-ab87-f76f65acc623.png)
+
+작성한 테스트를 선택해서 실행한다
+
+![image](https://user-images.githubusercontent.com/41019113/175461140-fa6e38f6-d4b0-46a8-ac67-9d0e44ce4dc3.png)
+
+`예시`
