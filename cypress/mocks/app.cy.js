@@ -2,6 +2,10 @@ import React from 'react';
 import { mount } from '@cypress/react';
 import App from '../../src/App';
 
+before(() => {
+  cy.viewport('iphone-6+');
+});
+
 /**
  * @see 참고해서 계산기 컴포넌트 테스트 코드 작성
  */
