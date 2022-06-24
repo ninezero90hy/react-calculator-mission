@@ -35,3 +35,7 @@ Start Component Testing in Chrome을 선택한다 ( 브라우저 선택은 선�
 ![image](https://user-images.githubusercontent.com/41019113/175461140-fa6e38f6-d4b0-46a8-ac67-9d0e44ce4dc3.png)
 
 `예시`
+
+# 참고
+- @cypress/react https://github.com/cypress-io/cypress/tree/master/npm/react#readme
+- cypress 가이드 https://docs.cypress.io/guides/overview/why-cypress
