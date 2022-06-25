@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import CalculatorButton from './Button';
 
 const RESULT = 'RESULT';
 
@@ -18,25 +19,6 @@ const Display = styled.div`
   font-size: 50px;
 `;
 
-const Button = styled.div`
-  border: 0.5px solid #999;
-  line-height: 100px;
-  text-align: center;
-  font-size: 25px;
-  cursor: pointer;
-
-  :hover {
-    background-color: #323330;
-    color: white;
-    transition: 0.1s ease-in-out;
-    opacity: 0.5;
-  }
-`;
-
-const SpecialButton = styled(Button)`
-  background: orange;
-`;
-
 const Buttons = styled.div`
   display: grid;
 `;
@@ -53,36 +35,77 @@ const BottomButtons = styled(Buttons)`
   grid-template-columns: 3fr 1fr;
 `;
 
-const EqualButton = styled(Button)`
-  background-color: orange;
-`;
+function doSomething(v) {
+  console.log(v);
+}
 
 function App() {
   return (
     <Container>
       <Display id={RESULT}>54,000</Display>
       <TopButtons>
-        <SpecialButton>AC</SpecialButton>
-        <SpecialButton>%</SpecialButton>
-        <SpecialButton>/</SpecialButton>
+        <CalculatorButton
+          special
+          valueAs={'AC'}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          special
+          valueAs={'%'}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          special
+          valueAs={'/'}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
       </TopButtons>
       <MiddleButtons>
-        <Button>7</Button>
-        <Button>8</Button>
-        <Button>9</Button>
-        <SpecialButton>X</SpecialButton>
-        <Button>4</Button>
-        <Button>5</Button>
-        <Button>6</Button>
-        <SpecialButton>-</SpecialButton>
-        <Button>1</Button>
-        <Button>2</Button>
-        <Button>3</Button>
-        <SpecialButton>+</SpecialButton>
+        <CalculatorButton
+          valueAs={7}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          valueAs={8}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          valueAs={9}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          special
+          valueAs={'X'}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          valueAs={4}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          valueAs={5}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          valueAs={6}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          special
+          valueAs={'-'}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          valueAs={1}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          valueAs={2}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          valueAs={3}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          special
+          valueAs={'+'}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
       </MiddleButtons>
       <BottomButtons>
-        <Button>0</Button>
-        <EqualButton>=</EqualButton>
+        <CalculatorButton
+          valueAs={0}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
+        <CalculatorButton
+          special
+          valueAs={'='}
+          onClick={(v) => doSomething(v)}></CalculatorButton>
       </BottomButtons>
     </Container>
   );
