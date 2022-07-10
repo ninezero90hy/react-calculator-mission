@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import CalculatorButton from './Button';
 
@@ -35,77 +36,226 @@ const BottomButtons = styled(Buttons)`
   grid-template-columns: 3fr 1fr;
 `;
 
-function doSomething(v) {
-  console.log(v);
+function numberWithThousandSeparator(v) {
+  return Number(v).toLocaleString();
+}
+
+function onClickOperator({
+  v,
+  updateOperator,
+  result,
+  updateResult,
+  updateTerm,
+}) {
+  updateOperator(v);
+  if (result !== '') {
+    updateResult('');
+    updateTerm(result);
+  }
+}
+
+function onClickBtn({ v, result, updateResult}) {
+  if (result === '0') {
+    if (v === 0) {
+      updateResult('0');
+      return;
+    }
+    updateResult(v);
+    return;
+  }
+
+  updateResult((result += v));
+}
+
+function clearEquation(
+  updateResult,
+  updateTerm,
+  updateOperator,
+) {
+  updateResult('');
+  updateTerm('');
+  updateOperator('');
+}
+
+function calculate(
+  operator,
+  term,
+  result,
+  updateResult,
+  updateTerm,
+  updateOperator,
+) {
+  let total = 0;
+  const secondTerm = result || term;
+  switch (operator) {
+    case '%':
+      total = Number(term) % Number(secondTerm);
+      break;
+    case 'X':
+      total = Number(term) * Number(secondTerm);
+      break;
+    case '+':
+      total = Number(term) + Number(secondTerm);
+      break;
+    case '-':
+      total = Number(term) - Number(secondTerm);
+      break;
+    case '/':
+      total = Number(term) / Number(secondTerm);
+      break;
+    default:
+      total = result;
+  }
+  updateResult('');
+  updateTerm(total);
+  updateOperator('');
 }
 
 function App() {
+  let [result, updateResult] = useState('');
+  let [term, updateTerm] = useState('');
+  let [operator, updateOperator] = useState('');
   return (
     <Container>
-      <Display id={RESULT}>54,000</Display>
+      <Display id={RESULT}>{numberWithThousandSeparator(result || term)}</Display>
       <TopButtons>
         <CalculatorButton
           special
           valueAs={'AC'}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            clearEquation(
+              updateResult,
+              updateTerm,
+              updateOperator,
+            )
+          }></CalculatorButton>
         <CalculatorButton
           special
           valueAs={'%'}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickOperator({
+              v,
+              updateOperator,
+              result,
+              updateResult,
+              updateTerm,
+            })
+          }></CalculatorButton>
         <CalculatorButton
           special
           valueAs={'/'}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickOperator({
+              v,
+              updateOperator,
+              result,
+              updateResult,
+              updateTerm,
+            })
+          }></CalculatorButton>
       </TopButtons>
       <MiddleButtons>
         <CalculatorButton
           valueAs={7}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickBtn({ v, result, updateResult})
+          }></CalculatorButton>
         <CalculatorButton
           valueAs={8}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickBtn({ v, result, updateResult})
+          }></CalculatorButton>
         <CalculatorButton
           valueAs={9}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickBtn({ v, result, updateResult})
+          }></CalculatorButton>
         <CalculatorButton
           special
           valueAs={'X'}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickOperator({
+              v,
+              updateOperator,
+              result,
+              updateResult,
+              updateTerm,
+            })
+          }></CalculatorButton>
         <CalculatorButton
           valueAs={4}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickBtn({ v, result, updateResult})
+          }></CalculatorButton>
         <CalculatorButton
           valueAs={5}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickBtn({ v, result, updateResult})
+          }></CalculatorButton>
         <CalculatorButton
           valueAs={6}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickBtn({ v, result, updateResult})
+          }></CalculatorButton>
         <CalculatorButton
           special
           valueAs={'-'}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickOperator({
+              v,
+              updateOperator,
+              result,
+              updateResult,
+              updateTerm,
+            })
+          }></CalculatorButton>
         <CalculatorButton
           valueAs={1}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickBtn({ v, result, updateResult})
+          }></CalculatorButton>
         <CalculatorButton
           valueAs={2}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickBtn({ v, result, updateResult})
+          }></CalculatorButton>
         <CalculatorButton
           valueAs={3}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickBtn({ v, result, updateResult})
+          }></CalculatorButton>
         <CalculatorButton
           special
           valueAs={'+'}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickOperator({
+              v,
+              updateOperator,
+              result,
+              updateResult,
+              updateTerm,
+            })
+          }></CalculatorButton>
       </MiddleButtons>
       <BottomButtons>
         <CalculatorButton
           valueAs={0}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={(v) =>
+            onClickBtn({ v, result, updateResult})
+          }></CalculatorButton>
         <CalculatorButton
           special
           valueAs={'='}
-          onClick={(v) => doSomething(v)}></CalculatorButton>
+          onClick={() =>
+            calculate(
+              operator,
+              term,
+              result,
+              updateResult,
+              updateTerm,
+              updateOperator,
+            )
+          }></CalculatorButton>
       </BottomButtons>
     </Container>
   );
