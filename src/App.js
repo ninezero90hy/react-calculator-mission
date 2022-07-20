@@ -45,16 +45,16 @@ function onClickOperator({
   updateOperator,
   result,
   updateResult,
-  updateTerm,
+  updateCurrentTerm,
 }) {
   updateOperator(v);
   if (result !== '') {
     updateResult('');
-    updateTerm(result);
+    updateCurrentTerm(result);
   }
 }
 
-function onClickBtn({ v, result, updateResult}) {
+function onClickBtn({ v, result, updateResult }) {
   if (result === '0') {
     if (v === 0) {
       updateResult('0');
@@ -67,67 +67,61 @@ function onClickBtn({ v, result, updateResult}) {
   updateResult((result += v));
 }
 
-function clearEquation(
-  updateResult,
-  updateTerm,
-  updateOperator,
-) {
+function clearEquation(updateResult, updateCurrentTerm, updateOperator) {
   updateResult('');
-  updateTerm('');
+  updateCurrentTerm('');
   updateOperator('');
 }
 
 function calculate(
   operator,
-  term,
+  singleTerm,
   result,
   updateResult,
-  updateTerm,
+  updateCurrentTerm,
   updateOperator,
 ) {
   let total = 0;
-  const secondTerm = result || term;
+  const secondTerm = result || singleTerm;
   switch (operator) {
     case '%':
-      total = Number(term) % Number(secondTerm);
+      total = Number(singleTerm) % Number(secondTerm);
       break;
     case 'X':
-      total = Number(term) * Number(secondTerm);
+      total = Number(singleTerm) * Number(secondTerm);
       break;
     case '+':
-      total = Number(term) + Number(secondTerm);
+      total = Number(singleTerm) + Number(secondTerm);
       break;
     case '-':
-      total = Number(term) - Number(secondTerm);
+      total = Number(singleTerm) - Number(secondTerm);
       break;
     case '/':
-      total = Number(term) / Number(secondTerm);
+      total = Number(singleTerm) / Number(secondTerm);
       break;
     default:
       total = result;
   }
   updateResult('');
-  updateTerm(total);
+  updateCurrentTerm(total);
   updateOperator('');
 }
 
 function App() {
   let [result, updateResult] = useState('');
-  let [term, updateTerm] = useState('');
+  let [currentTerm, updateCurrentTerm] = useState('');
   let [operator, updateOperator] = useState('');
   return (
     <Container>
-      <Display id={RESULT}>{numberWithThousandSeparator(result || term)}</Display>
+      <Display id={RESULT}>
+        {numberWithThousandSeparator(result || currentTerm)}
+      </Display>
       <TopButtons>
         <CalculatorButton
           special
           valueAs={'AC'}
-          onClick={(v) =>
-            clearEquation(
-              updateResult,
-              updateTerm,
-              updateOperator,
-            )
+          onClick={() =>
+            clearEquation(updateResult, updateCurrentTerm, updateOperator)
           }></CalculatorButton>
         <CalculatorButton
           special
@@ -138,7 +132,7 @@ function App() {
               updateOperator,
               result,
               updateResult,
-              updateTerm,
+              updateCurrentTerm,
             })
           }></CalculatorButton>
         <CalculatorButton
@@ -150,7 +144,7 @@ function App() {
               updateOperator,
               result,
               updateResult,
-              updateTerm,
+              updateCurrentTerm,
             })
           }></CalculatorButton>
       </TopButtons>
@@ -158,17 +152,17 @@ function App() {
         <CalculatorButton
           valueAs={7}
           onClick={(v) =>
-            onClickBtn({ v, result, updateResult})
+            onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
         <CalculatorButton
           valueAs={8}
           onClick={(v) =>
-            onClickBtn({ v, result, updateResult})
+            onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
         <CalculatorButton
           valueAs={9}
           onClick={(v) =>
-            onClickBtn({ v, result, updateResult})
+            onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
         <CalculatorButton
           special
@@ -179,23 +173,23 @@ function App() {
               updateOperator,
               result,
               updateResult,
-              updateTerm,
+              updateCurrentTerm,
             })
           }></CalculatorButton>
         <CalculatorButton
           valueAs={4}
           onClick={(v) =>
-            onClickBtn({ v, result, updateResult})
+            onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
         <CalculatorButton
           valueAs={5}
           onClick={(v) =>
-            onClickBtn({ v, result, updateResult})
+            onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
         <CalculatorButton
           valueAs={6}
           onClick={(v) =>
-            onClickBtn({ v, result, updateResult})
+            onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
         <CalculatorButton
           special
@@ -206,23 +200,23 @@ function App() {
               updateOperator,
               result,
               updateResult,
-              updateTerm,
+              updateCurrentTerm,
             })
           }></CalculatorButton>
         <CalculatorButton
           valueAs={1}
           onClick={(v) =>
-            onClickBtn({ v, result, updateResult})
+            onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
         <CalculatorButton
           valueAs={2}
           onClick={(v) =>
-            onClickBtn({ v, result, updateResult})
+            onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
         <CalculatorButton
           valueAs={3}
           onClick={(v) =>
-            onClickBtn({ v, result, updateResult})
+            onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
         <CalculatorButton
           special
@@ -233,7 +227,7 @@ function App() {
               updateOperator,
               result,
               updateResult,
-              updateTerm,
+              updateCurrentTerm,
             })
           }></CalculatorButton>
       </MiddleButtons>
@@ -241,7 +235,7 @@ function App() {
         <CalculatorButton
           valueAs={0}
           onClick={(v) =>
-            onClickBtn({ v, result, updateResult})
+            onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
         <CalculatorButton
           special
@@ -249,10 +243,10 @@ function App() {
           onClick={() =>
             calculate(
               operator,
-              term,
+              currentTerm,
               result,
               updateResult,
-              updateTerm,
+              updateCurrentTerm,
               updateOperator,
             )
           }></CalculatorButton>
