@@ -54,7 +54,14 @@ function onClickOperator({
   }
 }
 
+function isCurrentTermFull(result) {
+  return result.length === 9;
+}
+
 function onClickBtn({ v, result, updateResult }) {
+  if (isCurrentTermFull(result)) {
+    return;
+  }
   if (result === '0') {
     if (v === 0) {
       updateResult('0');
