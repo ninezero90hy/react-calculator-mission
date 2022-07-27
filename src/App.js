@@ -88,7 +88,7 @@ function multiply(firstTerm, secondTerm) {
   return Number(firstTerm) * Number(secondTerm);
 }
 
-function sum(firstTerm, secondTerm) {
+function add(firstTerm, secondTerm) {
   return Number(firstTerm) + Number(secondTerm);
 }
 
@@ -116,7 +116,7 @@ function isSubtraction(operator) {
   return operator === OPERATOR.subtract;
 }
 
-function isSummation(operator) {
+function isAddition(operator) {
   return operator === OPERATOR.add;
 }
 
@@ -147,8 +147,8 @@ function calculate(
     total = subtract(singleTerm, secondTerm);
   }
 
-  if (isSummation(operator)) {
-    total = sum(singleTerm, secondTerm);
+  if (isAddition(operator)) {
+    total = add(singleTerm, secondTerm);
   }
 
   updateResult('');
