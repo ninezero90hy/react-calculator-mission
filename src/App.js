@@ -80,6 +80,46 @@ function clearEquation(updateResult, updateCurrentTerm, updateOperator) {
   updateOperator('');
 }
 
+function divide(firstTerm, secondTerm) {
+  return Number(firstTerm) / Number(secondTerm);
+}
+
+function multiply(firstTerm, secondTerm) {
+  return Number(firstTerm) * Number(secondTerm);
+}
+
+function sum(firstTerm, secondTerm) {
+  return Number(firstTerm) + Number(secondTerm);
+}
+
+function subtract(firstTerm, secondTerm) {
+  return Number(firstTerm) - Number(secondTerm);
+}
+
+function modulo(firstTerm, secondTerm) {
+  return Number(firstTerm) % Number(secondTerm);
+}
+
+function isDivision(operator) {
+  return operator === '/';
+}
+
+function isMultiplication(operator) {
+  return operator === 'X';
+}
+
+function isModulo(operator) {
+  return operator === '%';
+}
+
+function isSubtraction(operator) {
+  return operator === '-';
+}
+
+function isSummation(operator) {
+  return operator === '+';
+}
+
 function calculate(
   operator,
   singleTerm,
@@ -88,27 +128,29 @@ function calculate(
   updateCurrentTerm,
   updateOperator,
 ) {
-  let total = 0;
+  let total = result;
   const secondTerm = result || singleTerm;
-  switch (operator) {
-    case '%':
-      total = Number(singleTerm) % Number(secondTerm);
-      break;
-    case 'X':
-      total = Number(singleTerm) * Number(secondTerm);
-      break;
-    case '+':
-      total = Number(singleTerm) + Number(secondTerm);
-      break;
-    case '-':
-      total = Number(singleTerm) - Number(secondTerm);
-      break;
-    case '/':
-      total = Number(singleTerm) / Number(secondTerm);
-      break;
-    default:
-      total = result;
+
+  if (isDivision(operator)) {
+    total = divide(singleTerm, secondTerm);
   }
+
+  if (isMultiplication(operator)) {
+    total = multiply(singleTerm, secondTerm);
+  }
+
+  if (isModulo(operator)) {
+    total = modulo(singleTerm, secondTerm);
+  }
+
+  if (isSubtraction(operator)) {
+    total = subtract(singleTerm, secondTerm);
+  }
+
+  if (isSummation(operator)) {
+    total = sum(singleTerm, secondTerm);
+  }
+
   updateResult('');
   updateCurrentTerm(total);
   updateOperator('');
