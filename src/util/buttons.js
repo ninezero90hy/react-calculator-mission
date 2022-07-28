@@ -1,12 +1,12 @@
 export const OPERATOR = Object.freeze({
-  add: '+',
-  subtract: '-',
-  multiply: '*',
-  divide: '/',
-  modulo: '%',
+  ADD: '+',
+  SUBTRACT: '-',
+  MULTIPLY: '*',
+  DIVIDE: '/',
+  MODULO: '%',
 });
 
 export const SPECIAL_BUTTON = Object.freeze({
-  clear: 'AC',
-  equal: '=',
+  CLEAR: 'AC',
+  EQUAL: '=',
 });

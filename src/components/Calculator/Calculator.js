@@ -96,23 +96,23 @@ function modulo(firstTerm, secondTerm) {
 }
 
 function isDivision(operator) {
-  return operator === OPERATOR.divide;
+  return operator === OPERATOR.DIVIDE;
 }
 
 function isMultiplication(operator) {
-  return operator === OPERATOR.multiply;
+  return operator === OPERATOR.MULTIPLY;
 }
 
 function isModulo(operator) {
-  return operator === OPERATOR.modulo;
+  return operator === OPERATOR.MODULO;
 }
 
 function isSubtraction(operator) {
-  return operator === OPERATOR.subtract;
+  return operator === OPERATOR.SUBTRACT;
 }
 
 function isAddition(operator) {
-  return operator === OPERATOR.add;
+  return operator === OPERATOR.ADD;
 }
 
 function calculate(
@@ -162,13 +162,13 @@ export default function Calculator() {
       <TopButtons>
         <CalculatorButton
           special
-          valueAs={SPECIAL_BUTTON.clear}
+          valueAs={SPECIAL_BUTTON.CLEAR}
           onClick={() =>
             clearEquation(updateResult, updateCurrentTerm, updateOperator)
           }></CalculatorButton>
         <CalculatorButton
           special
-          valueAs={OPERATOR.modulo}
+          valueAs={OPERATOR.MODULO}
           onClick={(v) =>
             onClickOperator({
               v,
@@ -180,7 +180,7 @@ export default function Calculator() {
           }></CalculatorButton>
         <CalculatorButton
           special
-          valueAs={OPERATOR.divide}
+          valueAs={OPERATOR.DIVIDE}
           onClick={(v) =>
             onClickOperator({
               v,
@@ -209,7 +209,7 @@ export default function Calculator() {
           }></CalculatorButton>
         <CalculatorButton
           special
-          valueAs={OPERATOR.multiply}
+          valueAs={OPERATOR.MULTIPLY}
           onClick={(v) =>
             onClickOperator({
               v,
@@ -236,7 +236,7 @@ export default function Calculator() {
           }></CalculatorButton>
         <CalculatorButton
           special
-          valueAs={OPERATOR.subtract}
+          valueAs={OPERATOR.SUBTRACT}
           onClick={(v) =>
             onClickOperator({
               v,
@@ -263,7 +263,7 @@ export default function Calculator() {
           }></CalculatorButton>
         <CalculatorButton
           special
-          valueAs={OPERATOR.add}
+          valueAs={OPERATOR.ADD}
           onClick={(v) =>
             onClickOperator({
               v,
@@ -282,7 +282,7 @@ export default function Calculator() {
           }></CalculatorButton>
         <CalculatorButton
           special
-          valueAs={SPECIAL_BUTTON.equal}
+          valueAs={SPECIAL_BUTTON.EQUAL}
           onClick={() =>
             calculate(
               operator,
