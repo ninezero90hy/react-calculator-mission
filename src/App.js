@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Calculator from './components/Calculator/Calculator';
+import Calculator from './components/Calculator';
 
 const Container = styled.div`
   max-width: 400px;

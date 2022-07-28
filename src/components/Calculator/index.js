@@ -1,4 +1,4 @@
-import CalculatorButton from '../Button/Button';
+import CalculatorButton from '../Button';
 import { OPERATOR, SPECIAL_BUTTON } from '../../util/buttons';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -150,7 +150,7 @@ function calculate(
   updateCurrentTerm(total);
   updateOperator('');
 }
-export default function Calculator() {
+export default function Index() {
   let [result, updateResult] = useState('');
   let [currentTerm, updateCurrentTerm] = useState('');
   let [operator, updateOperator] = useState('');
