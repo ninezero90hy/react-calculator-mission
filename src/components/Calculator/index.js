@@ -152,9 +152,10 @@ function calculate(
   updateOperator('');
 }
 export default function Calculator() {
-  let [result, updateResult] = useState('');
-  let [currentTerm, updateCurrentTerm] = useState('');
-  let [operator, updateOperator] = useState('');
+  const [result, updateResult] = useState('');
+  const [currentTerm, updateCurrentTerm] = useState('');
+  const [operator, updateOperator] = useState('');
+
   return (
     <>
       <Display id={RESULT}>
