@@ -36,44 +36,8 @@ function numberWithThousandSeparator(v) {
   return Number(v).toLocaleString();
 }
 
-function onClickOperator({
-  v,
-  updateOperator,
-  result,
-  updateResult,
-  updateCurrentTerm,
-}) {
-  updateOperator(v);
-  if (result !== '') {
-    updateResult('');
-    updateCurrentTerm(result);
-  }
-}
-
 function isCurrentTermFull(result) {
   return result.length === 9;
-}
-
-function onClickBtn({ v, result, updateResult }) {
-  if (isCurrentTermFull(result)) {
-    return;
-  }
-  if (result === '0') {
-    if (v === 0) {
-      updateResult('0');
-      return;
-    }
-    updateResult(v);
-    return;
-  }
-
-  updateResult((result += v));
-}
-
-function clearEquation(updateResult, updateCurrentTerm, updateOperator) {
-  updateResult('');
-  updateCurrentTerm('');
-  updateOperator('');
 }
 
 function divide(firstTerm, secondTerm) {
@@ -116,45 +80,69 @@ function isAddition(operator) {
   return operator === OPERATOR.ADD;
 }
 
-function calculate(
-  operator,
-  singleTerm,
-  result,
-  updateResult,
-  updateCurrentTerm,
-  updateOperator,
-) {
-  let total = result;
-  const secondTerm = result || singleTerm;
-
-  if (isDivision(operator)) {
-    total = divide(singleTerm, secondTerm);
-  }
-
-  if (isMultiplication(operator)) {
-    total = multiply(singleTerm, secondTerm);
-  }
-
-  if (isModulo(operator)) {
-    total = modulo(singleTerm, secondTerm);
-  }
-
-  if (isSubtraction(operator)) {
-    total = subtract(singleTerm, secondTerm);
-  }
-
-  if (isAddition(operator)) {
-    total = add(singleTerm, secondTerm);
-  }
-
-  updateResult('');
-  updateCurrentTerm(total);
-  updateOperator('');
-}
 export default function Calculator() {
   const [result, updateResult] = useState('');
   const [currentTerm, updateCurrentTerm] = useState('');
   const [operator, updateOperator] = useState('');
+
+  function calculate(operator, singleTerm, result) {
+    let total = result;
+    const secondTerm = result || singleTerm;
+
+    if (isDivision(operator)) {
+      total = divide(singleTerm, secondTerm);
+    }
+
+    if (isMultiplication(operator)) {
+      total = multiply(singleTerm, secondTerm);
+    }
+
+    if (isModulo(operator)) {
+      total = modulo(singleTerm, secondTerm);
+    }
+
+    if (isSubtraction(operator)) {
+      total = subtract(singleTerm, secondTerm);
+    }
+
+    if (isAddition(operator)) {
+      total = add(singleTerm, secondTerm);
+    }
+
+    updateResult('');
+    updateCurrentTerm(total);
+    updateOperator('');
+  }
+
+  function clearEquation() {
+    updateResult('');
+    updateCurrentTerm('');
+    updateOperator('');
+  }
+
+  function onClickOperator(v, result) {
+    updateOperator(v);
+    if (result !== '') {
+      updateResult('');
+      updateCurrentTerm(result);
+    }
+  }
+
+  function onClickNumber(v, result) {
+    if (isCurrentTermFull(result)) {
+      return;
+    }
+    if (result === '0') {
+      if (v === 0) {
+        updateResult('0');
+        return;
+      }
+      updateResult(v);
+      return;
+    }
+
+    updateResult((result += v));
+  }
 
   return (
     <>
@@ -164,129 +152,60 @@ export default function Calculator() {
       <TopButtons>
         <SpecialButton
           valueAs={SPECIAL_BUTTON.CLEAR}
-          onClick={() =>
-            clearEquation(updateResult, updateCurrentTerm, updateOperator)
-          }></SpecialButton>
+          onClick={() => clearEquation()}></SpecialButton>
         <SpecialButton
           valueAs={OPERATOR.MODULO}
-          onClick={(v) =>
-            onClickOperator({
-              v,
-              updateOperator,
-              result,
-              updateResult,
-              updateCurrentTerm,
-            })
-          }></SpecialButton>
+          onClick={(v) => onClickOperator(v, result)}></SpecialButton>
         <SpecialButton
           valueAs={OPERATOR.DIVIDE}
-          onClick={(v) =>
-            onClickOperator({
-              v,
-              updateOperator,
-              result,
-              updateResult,
-              updateCurrentTerm,
-            })
-          }></SpecialButton>
+          onClick={(v) => onClickOperator(v, result)}></SpecialButton>
       </TopButtons>
       <MiddleButtons>
         <CalculatorButton
           valueAs={7}
-          onClick={(v) =>
-            onClickBtn({ v, result, updateResult })
-          }></CalculatorButton>
+          onClick={(v) => onClickNumber(v, result)}></CalculatorButton>
         <CalculatorButton
           valueAs={8}
-          onClick={(v) =>
-            onClickBtn({ v, result, updateResult })
-          }></CalculatorButton>
+          onClick={(v) => onClickNumber(v, result)}></CalculatorButton>
         <CalculatorButton
           valueAs={9}
-          onClick={(v) =>
-            onClickBtn({ v, result, updateResult })
-          }></CalculatorButton>
+          onClick={(v) => onClickNumber(v, result)}></CalculatorButton>
         <SpecialButton
           valueAs={OPERATOR.MULTIPLY}
-          onClick={(v) =>
-            onClickOperator({
-              v,
-              updateOperator,
-              result,
-              updateResult,
-              updateCurrentTerm,
-            })
-          }></SpecialButton>
+          onClick={(v) => onClickOperator(v, result)}></SpecialButton>
         <CalculatorButton
           valueAs={4}
-          onClick={(v) =>
-            onClickBtn({ v, result, updateResult })
-          }></CalculatorButton>
+          onClick={(v) => onClickNumber(v, result)}></CalculatorButton>
         <CalculatorButton
           valueAs={5}
-          onClick={(v) =>
-            onClickBtn({ v, result, updateResult })
-          }></CalculatorButton>
+          onClick={(v) => onClickNumber(v, result)}></CalculatorButton>
         <CalculatorButton
           valueAs={6}
-          onClick={(v) =>
-            onClickBtn({ v, result, updateResult })
-          }></CalculatorButton>
+          onClick={(v) => onClickNumber(v, result)}></CalculatorButton>
         <SpecialButton
           valueAs={OPERATOR.SUBTRACT}
-          onClick={(v) =>
-            onClickOperator({
-              v,
-              updateOperator,
-              result,
-              updateResult,
-              updateCurrentTerm,
-            })
-          }></SpecialButton>
+          onClick={(v) => onClickOperator(v, result)}></SpecialButton>
         <CalculatorButton
           valueAs={1}
-          onClick={(v) =>
-            onClickBtn({ v, result, updateResult })
-          }></CalculatorButton>
+          onClick={(v) => onClickNumber(v, result)}></CalculatorButton>
         <CalculatorButton
           valueAs={2}
-          onClick={(v) =>
-            onClickBtn({ v, result, updateResult })
-          }></CalculatorButton>
+          onClick={(v) => onClickNumber(v, result)}></CalculatorButton>
         <CalculatorButton
           valueAs={3}
-          onClick={(v) =>
-            onClickBtn({ v, result, updateResult })
-          }></CalculatorButton>
+          onClick={(v) => onClickNumber(v, result)}></CalculatorButton>
         <SpecialButton
           valueAs={OPERATOR.ADD}
-          onClick={(v) =>
-            onClickOperator({
-              v,
-              updateOperator,
-              result,
-              updateResult,
-              updateCurrentTerm,
-            })
-          }></SpecialButton>
+          onClick={(v) => onClickOperator(v, result)}></SpecialButton>
       </MiddleButtons>
       <BottomButtons>
         <CalculatorButton
           valueAs={0}
-          onClick={(v) =>
-            onClickBtn({ v, result, updateResult })
-          }></CalculatorButton>
+          onClick={(v) => onClickNumber(v, result)}></CalculatorButton>
         <SpecialButton
           valueAs={SPECIAL_BUTTON.EQUAL}
           onClick={() =>
-            calculate(
-              operator,
-              currentTerm,
-              result,
-              updateResult,
-              updateCurrentTerm,
-              updateOperator,
-            )
+            calculate(operator, currentTerm, result)
           }></SpecialButton>
       </BottomButtons>
     </>
