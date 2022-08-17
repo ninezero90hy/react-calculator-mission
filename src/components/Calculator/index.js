@@ -1,4 +1,5 @@
 import CalculatorButton from '../Button';
+import SpecialButton from '../SpecialButton';
 import { OPERATOR, SPECIAL_BUTTON } from '../../util/buttons';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -160,14 +161,12 @@ export default function Calculator() {
         {numberWithThousandSeparator(result || currentTerm)}
       </Display>
       <TopButtons>
-        <CalculatorButton
-          special
+        <SpecialButton
           valueAs={SPECIAL_BUTTON.CLEAR}
           onClick={() =>
             clearEquation(updateResult, updateCurrentTerm, updateOperator)
-          }></CalculatorButton>
-        <CalculatorButton
-          special
+          }></SpecialButton>
+        <SpecialButton
           valueAs={OPERATOR.MODULO}
           onClick={(v) =>
             onClickOperator({
@@ -177,9 +176,8 @@ export default function Calculator() {
               updateResult,
               updateCurrentTerm,
             })
-          }></CalculatorButton>
-        <CalculatorButton
-          special
+          }></SpecialButton>
+        <SpecialButton
           valueAs={OPERATOR.DIVIDE}
           onClick={(v) =>
             onClickOperator({
@@ -189,7 +187,7 @@ export default function Calculator() {
               updateResult,
               updateCurrentTerm,
             })
-          }></CalculatorButton>
+          }></SpecialButton>
       </TopButtons>
       <MiddleButtons>
         <CalculatorButton
@@ -207,8 +205,7 @@ export default function Calculator() {
           onClick={(v) =>
             onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
-        <CalculatorButton
-          special
+        <SpecialButton
           valueAs={OPERATOR.MULTIPLY}
           onClick={(v) =>
             onClickOperator({
@@ -218,7 +215,7 @@ export default function Calculator() {
               updateResult,
               updateCurrentTerm,
             })
-          }></CalculatorButton>
+          }></SpecialButton>
         <CalculatorButton
           valueAs={4}
           onClick={(v) =>
@@ -234,8 +231,7 @@ export default function Calculator() {
           onClick={(v) =>
             onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
-        <CalculatorButton
-          special
+        <SpecialButton
           valueAs={OPERATOR.SUBTRACT}
           onClick={(v) =>
             onClickOperator({
@@ -245,7 +241,7 @@ export default function Calculator() {
               updateResult,
               updateCurrentTerm,
             })
-          }></CalculatorButton>
+          }></SpecialButton>
         <CalculatorButton
           valueAs={1}
           onClick={(v) =>
@@ -261,8 +257,7 @@ export default function Calculator() {
           onClick={(v) =>
             onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
-        <CalculatorButton
-          special
+        <SpecialButton
           valueAs={OPERATOR.ADD}
           onClick={(v) =>
             onClickOperator({
@@ -272,7 +267,7 @@ export default function Calculator() {
               updateResult,
               updateCurrentTerm,
             })
-          }></CalculatorButton>
+          }></SpecialButton>
       </MiddleButtons>
       <BottomButtons>
         <CalculatorButton
@@ -280,8 +275,7 @@ export default function Calculator() {
           onClick={(v) =>
             onClickBtn({ v, result, updateResult })
           }></CalculatorButton>
-        <CalculatorButton
-          special
+        <SpecialButton
           valueAs={SPECIAL_BUTTON.EQUAL}
           onClick={() =>
             calculate(
@@ -292,7 +286,7 @@ export default function Calculator() {
               updateCurrentTerm,
               updateOperator,
             )
-          }></CalculatorButton>
+          }></SpecialButton>
       </BottomButtons>
     </>
   );
