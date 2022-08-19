@@ -15,12 +15,6 @@ const TheButton = styled.div`
   }
 `;
 
-export default function Button({ valueAs, special, onClick: click }) {
-  return (
-    <TheButton
-      onClick={() => click(valueAs)}
-      style={{ background: special ? 'orange' : '' }}>
-      {valueAs}
-    </TheButton>
-  );
+export default function Button({ valueAs, onClick: click }) {
+  return <TheButton onClick={() => click(valueAs)}>{valueAs}</TheButton>;
 }
