@@ -33,7 +33,9 @@ const BottomButtons = styled(Buttons)`
 `;
 
 function numberWithThousandSeparator(v) {
-  return Number(v).toLocaleString();
+  return (Math.round(v * 100000) / 100000)
+    .toString()
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function isCurrentTermFull(result) {
